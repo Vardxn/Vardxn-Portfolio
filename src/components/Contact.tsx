@@ -12,8 +12,8 @@ const Contact = () => {
           <div className="contact-box">
             <h4>Email</h4>
             <p>
-                <a href="mailto:vardxn@gmail.com" data-cursor="disable">
-                  vardxn@gmail.com
+                <a href="mailto:vardan2701@gmail.com" data-cursor="disable">
+                  vardan2701@gmail.com
               </a>
             </p>
             <h4>Phone</h4>
@@ -44,7 +44,7 @@ const Contact = () => {
               LinkedIn <MdArrowOutward />
             </a>
             <a
-                href="https://www.instagram.com/vardxn_"
+                href="https://www.instagram.com/vardxnn/"
               target="_blank"
               rel="noreferrer"
               data-cursor="disable"

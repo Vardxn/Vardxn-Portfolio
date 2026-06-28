@@ -10,25 +10,92 @@ import {
   CylinderCollider,
   RapierRigidBody,
 } from "@react-three/rapier";
+import { skillsData } from "../data/skills";
 
-const textureLoader = new THREE.TextureLoader();
-const imageUrls = [
-  "/images/react2.webp",
-  "/images/next2.webp",
-  "/images/node2.webp",
-  "/images/express.webp",
-  "/images/mongo.webp",
-  "/images/mysql.webp",
-  "/images/typescript.webp",
-  "/images/javascript.webp",
-];
-const textures = imageUrls.map((url) => textureLoader.load(url));
+const techSkills = Array.from(
+  new Map(
+    skillsData
+      .flatMap((category) => category.skills)
+      .map((skill) => [skill.name, skill])
+  ).values()
+);
 
 const sphereGeometry = new THREE.SphereGeometry(1, 28, 28);
 
-const spheres = [...Array(30)].map(() => ({
-  scale: [0.7, 1, 0.8, 1, 1][Math.floor(Math.random() * 5)],
+const spheres = techSkills.map((skill) => ({
+  skill,
+  scale: 0.58,
 }));
+
+function wrapLabel(label: string) {
+  return label
+    .replace("JavaScript (ES6+)", "JavaScript ES6+")
+    .replace("Data Structures & Algorithms", "DSA")
+    .replace("JWT Authentication", "JWT Auth")
+    .replace("Middleware Architecture", "Middleware")
+    .replace("Google Cloud Vision", "Cloud Vision")
+    .split(/[\s/&]+/)
+    .reduce<string[]>((lines, word) => {
+      const current = lines[lines.length - 1] || "";
+      const next = current ? `${current} ${word}` : word;
+
+      if (next.length > 14 && current) {
+        lines.push(word);
+      } else if (lines.length === 0) {
+        lines.push(next);
+      } else {
+        lines[lines.length - 1] = next;
+      }
+
+      return lines;
+    }, [])
+    .slice(0, 3);
+}
+
+function createSkillTexture(name: string, color = "#c481ff") {
+  const canvas = document.createElement("canvas");
+  canvas.width = 512;
+  canvas.height = 512;
+
+  const ctx = canvas.getContext("2d");
+  if (!ctx) {
+    return new THREE.CanvasTexture(canvas);
+  }
+
+  const gradient = ctx.createRadialGradient(170, 140, 40, 256, 256, 260);
+  gradient.addColorStop(0, "#ffffff");
+  gradient.addColorStop(0.42, color);
+  gradient.addColorStop(1, "#08080d");
+
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.14)";
+  ctx.beginPath();
+  ctx.arc(160, 120, 110, 0, Math.PI * 2);
+  ctx.fill();
+
+  const lines = wrapLabel(name);
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillStyle = "#ffffff";
+  ctx.shadowColor = "rgba(0, 0, 0, 0.75)";
+  ctx.shadowBlur = 12;
+  ctx.font = `700 ${lines.length > 2 ? 52 : 62}px Inter, Arial, sans-serif`;
+
+  const lineHeight = lines.length > 2 ? 62 : 72;
+  const startY = 256 - ((lines.length - 1) * lineHeight) / 2;
+  lines.forEach((line, index) => {
+    ctx.fillText(line, 256, startY + index * lineHeight, 390);
+  });
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.anisotropy = 8;
+  texture.needsUpdate = true;
+
+  return texture;
+}
 
 type SphereProps = {
   vec?: THREE.Vector3;
@@ -152,18 +219,22 @@ const TechStack = () => {
     };
   }, []);
   const materials = useMemo(() => {
-    return textures.map(
-      (texture) =>
+    return techSkills.map((skill) => {
+      const texture = createSkillTexture(skill.name, skill.color);
+
+      return (
         new THREE.MeshPhysicalMaterial({
           map: texture,
+          color: "#ffffff",
           emissive: "#ffffff",
           emissiveMap: texture,
-          emissiveIntensity: 0.3,
-          metalness: 0.5,
-          roughness: 1,
+          emissiveIntensity: 0.16,
+          metalness: 0.15,
+          roughness: 0.72,
           clearcoat: 0.1,
         })
-    );
+      );
+    });
   }, []);
 
   return (
@@ -191,9 +262,9 @@ const TechStack = () => {
           <Pointer isActive={isActive} />
           {spheres.map((props, i) => (
             <SphereGeo
-              key={i}
+              key={props.skill.name}
               {...props}
-              material={materials[Math.floor(Math.random() * materials.length)]}
+              material={materials[i]}
               isActive={isActive}
             />
           ))}

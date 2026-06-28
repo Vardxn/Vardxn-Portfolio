@@ -6,7 +6,7 @@ const About = () => {
       <div className="about-me">
         <h3 className="title">About Me</h3>
         <p className="para">
-            I'm a passionate Full Stack Web Developer and Software Engineering Intern with expertise in building scalable, cloud-native applications. Currently pursuing my Bachelor's in Information Technology at NIT Srinagar with a CGPA of 8+, I specialize in MERN stack development, microservices architecture, and AI-integrated solutions. I'm driven by creating seamless digital experiences that solve real-world problems through innovative technology and best coding practices.
+            I'm a final-year B.Tech Information Technology student at NIT Srinagar and a Software Engineering Intern with hands-on experience delivering cloud-native backend systems. I build production-ready MERN and Next.js applications with secure REST APIs, JWT/RBAC access control, Dockerized services, and scalable data models. Across HealthEase, Wanderlust, and Mohishree, I have shipped 20+ API endpoints, integrated AI/OCR pipelines with ~98% extraction accuracy, and focused on software that solves real user problems.
         </p>
       </div>
     </div>

@@ -58,11 +58,11 @@ const Work = () => {
           My <span>Work</span>
         </h2>
         <div className="work-flex">
-          {[...Array(3)].map((_value, index) => (
+          {caseStudies.map((project, index) => (
             <div
               className="work-box"
-              key={index}
-              onClick={() => setSelectedCaseStudy(caseStudies[index].id)}
+              key={project.id}
+              onClick={() => setSelectedCaseStudy(project.id)}
               style={{ cursor: "pointer" }}
             >
               <div className="work-info">
@@ -71,28 +71,19 @@ const Work = () => {
 
                   <div>
                       <h4>
-                        {index === 0 && "HealthEase"}
-                        {index === 1 && "Mohishree"}
-                        {index === 2 && "Wanderlust"}
-                        {index > 2 && "Project " + (index + 1)}
+                        {project.title.split(" - ")[0]}
                       </h4>
                       <p>
-                        {index === 0 && "Healthcare Platform"}
-                        {index === 1 && "B2B Marketplace"}
-                        {index === 2 && "Travel Booking"}
-                        {index > 2 && "Web Application"}
+                        {project.category}
                       </p>
                   </div>
                 </div>
                   <h4>Tech Stack</h4>
                   <p>
-                    {index === 0 && "React, Node.js, MongoDB, OpenAI, JWT"}
-                    {index === 1 && "Next.js, PostgreSQL, REST APIs, JWT"}
-                    {index === 2 && "React, Express.js, PostgreSQL, Maps API"}
-                    {index > 2 && "MERN Stack"}
-                  {caseStudies[index]?.liveLink && (
+                    {project.techStack.slice(0, 5).join(", ")}
+                  {project.liveLink && (
                     <a
-                      href={caseStudies[index].liveLink}
+                      href={project.liveLink}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="work-live-link"
@@ -109,18 +100,18 @@ const Work = () => {
                     index === 0
                       ? "/images/healthease-placeholder.svg"
                       : index === 1
-                      ? "/images/mohishree-placeholder.svg"
-                      : index === 2
                       ? "/images/wanderlust-placeholder.svg"
+                      : index === 2
+                      ? "/images/mohishree-placeholder.svg"
                       : "/images/placeholder.webp"
                   }
                   alt={
                     index === 0
                       ? "HealthEase project preview"
                       : index === 1
-                      ? "Mohishree project preview"
-                      : index === 2
                       ? "Wanderlust project preview"
+                      : index === 2
+                      ? "Mohishree project preview"
                       : "Project preview"
                   }
                 />

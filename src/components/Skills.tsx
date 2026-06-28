@@ -3,7 +3,15 @@ import { skillsData } from "../data/skills";
 import "./styles/Skills.css";
 
 const Skills = () => {
-  const skillRows = [skillsData.slice(0, 2), skillsData.slice(2, 4)];
+  const skillRows = skillsData.reduce<typeof skillsData[]>((rows, category, index) => {
+    if (index % 2 === 0) {
+      rows.push([category]);
+    } else {
+      rows[rows.length - 1].push(category);
+    }
+
+    return rows;
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -41,7 +49,7 @@ const Skills = () => {
             My <span>Skills</span>
           </h2>
           <p className="skills-subtitle">
-            Well-defined skill sets across frontend, backend, cloud, and core CS
+            Resume-aligned strengths across backend engineering, full-stack delivery, AI integrations, cloud, and core CS
           </p>
         </motion.div>
 
@@ -109,15 +117,15 @@ const Skills = () => {
         >
           <div className="stat">
             <h4>20+</h4>
-            <p>Technologies</p>
+            <p>API Endpoints Shipped</p>
           </div>
           <div className="stat">
-            <h4>95%</h4>
-            <p>Avg. Proficiency</p>
+            <h4>3</h4>
+            <p>Production-Grade Projects</p>
           </div>
           <div className="stat">
-            <h4>4</h4>
-            <p>Categories</p>
+            <h4>~98%</h4>
+            <p>OCR Extraction Accuracy</p>
           </div>
         </motion.div>
       </div>

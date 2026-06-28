@@ -87,23 +87,21 @@ const WhatIDo = () => {
             <div className="what-corner"></div>
 
             <div className="what-content-in">
-              <h3>DEVELOP</h3>
+              <h3>ENGINEER</h3>
               <h4>Description</h4>
               <p>
-                  Building responsive and interactive web applications using modern frontend frameworks. Expertise in React, Next.js, and TypeScript with focus on user experience and performance optimization.
+                  Designing secure backend systems, RESTful APIs, authentication flows, and database architectures for production-grade applications.
               </p>
               <h5>Skillset & tools</h5>
               <div className="what-content-flex">
-                <div className="what-tags">JavaScript</div>
-                <div className="what-tags">TypeScript</div>
-                  <div className="what-tags">React.js</div>
-                <div className="what-tags">React</div>
-                  <div className="what-tags">CSS/Tailwind</div>
                 <div className="what-tags">Node.js</div>
-                <div className="what-tags">Next.js</div>
-                  <div className="what-tags">HTML5</div>
-                  <div className="what-tags">REST APIs</div>
-                  <div className="what-tags">GSAP</div>
+                <div className="what-tags">Express.js</div>
+                <div className="what-tags">REST APIs</div>
+                <div className="what-tags">JWT/RBAC</div>
+                <div className="what-tags">MongoDB</div>
+                <div className="what-tags">PostgreSQL</div>
+                <div className="what-tags">Docker</div>
+                <div className="what-tags">Microservices</div>
               </div>
               <div className="what-arrow"></div>
             </div>
@@ -127,21 +125,21 @@ const WhatIDo = () => {
             </div>
             <div className="what-corner"></div>
             <div className="what-content-in">
-              <h3>DESIGN</h3>
+              <h3>BUILD</h3>
               <h4>Description</h4>
               <p>
-                  Building scalable backend architectures and cloud-native solutions. Expertise in microservices, RESTful APIs, databases, and deployment on cloud infrastructure.
+                  Building full-stack products that combine polished interfaces, AI integrations, OCR workflows, maps, media uploads, and reliable deployment practices.
               </p>
               <h5>Skillset & tools</h5>
               <div className="what-content-flex">
-                  <div className="what-tags">Node.js</div>
-                  <div className="what-tags">Express.js</div>
-                  <div className="what-tags">PostgreSQL</div>
-                  <div className="what-tags">MongoDB</div>
-                  <div className="what-tags">Docker</div>
-                  <div className="what-tags">Microservices</div>
-                  <div className="what-tags">JWT/RBAC</div>
-                  <div className="what-tags">Git/GitHub</div>
+                  <div className="what-tags">React.js</div>
+                  <div className="what-tags">Next.js</div>
+                  <div className="what-tags">TypeScript</div>
+                  <div className="what-tags">Tailwind CSS</div>
+                  <div className="what-tags">OpenAI API</div>
+                  <div className="what-tags">Cloud Vision</div>
+                  <div className="what-tags">Cloudinary</div>
+                  <div className="what-tags">Mapbox API</div>
               </div>
               <div className="what-arrow"></div>
             </div>
